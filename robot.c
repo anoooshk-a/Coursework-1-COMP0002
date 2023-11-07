@@ -9,6 +9,7 @@ void initialiseRobot(Robot *robot, int homeRow, int homeCol, GridSquare grid[ROW
     robot->position.x = robot->gridSquare->position.x;
     robot->position.y = robot->gridSquare->position.y;
     robot->direction = EAST;
+    robot->carryingMarker = 0;
 }
 
 void drawRobot(const Robot *robot)
@@ -99,5 +100,38 @@ void right(Robot *robot)
     else if (robot->direction == EAST)
     {
         robot->direction == SOUTH;
+    }
+}
+
+int atMarker(Robot *robot)
+{
+    return robot->gridSquare->type == MARKER;
+}
+
+int atHome(Robot *robot)
+{
+    return robot->gridSquare->type == HOME;
+}
+
+void pickUpMarker(Robot *robot)
+{
+    if (!atMarker(robot))
+        return;
+    if (isCarryingAMarker(robot))
+        return;
+    robot->carryingMarker = 1;
+    robot->gridSquare->type = EMPTY;
+}
+
+int isCarryingAMarker(Robot *robot)
+{
+    return robot->carryingMarker;
+}
+
+void dropMarker(Robot *robot)
+{
+    if (atHome(robot))
+    {
+        robot->carryingMarker = 0;
     }
 }

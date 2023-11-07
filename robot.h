@@ -18,6 +18,7 @@ typedef struct Robot
     Coordinates position; // represents the robots position on screen
     Direction direction;  // field "direction" of the type "enum Direction"
     GridSquare *gridSquare;
+    int carryingMarker;
 } Robot;
 
 // move the robot forward to the next grid square in the direction the
@@ -26,19 +27,19 @@ typedef struct Robot
 //  move. A block occupies one square and prevents the robot from moving onto the
 //  square. The robot cannot move diagonally and can only move in the direction it is
 //  facing
-void forward(); // all of these functions will take a pointer to the robot
+void forward(Robot *robot, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS]); // all of these functions will take a pointer to the robot
 
 // turn the robot left (anti-clockwise) by 90 degrees, while remaining on the
 // same square.
-void left();
+void left(Robot *robot);
 
 // turn the robot right (clockwise) by 90 degrees, while remaining on the
 //  same square.
-void right();
+void right(Robot *robot);
 
 // return true if the robot is on a marker square, otherwise false.
 // Markers can be placed on one or more squares.
-void atMarker();
+int atMarker(Robot *robot);
 
 // return true if the robot can move forward, there is no wall or
 // block in front of it. Return false otherwise.
@@ -47,19 +48,19 @@ int canMoveForward(Robot *robot, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLU
 // the ‘home’ square is the initial position of the robot. The function
 // returns true if the robot is on the home square, otherwise false. By definition, there
 // can only be one home square.
-int atHome();
+int atHome(Robot *robot);
 
 // the robot can pick up and carry a marker if it is on a marker
 // square. If there is no marker on the square nothing happens. The robot can only carry
 // a single marker at any time.
-void pickUpMarker();
+void pickUpMarker(Robot *robot);
 
 // – the robot can drop a marker on any square that is not occupied by
 // a block. Multiple markers can be dropped on the same square.
-void dropMarker();
+void dropMarker(Robot *robot);
 
 // returns true if the robot is carrying a marker, otherwise false.
-int isCarryingAMarker();
+int isCarryingAMarker(Robot *robot);
 
 void initialiseRobot(Robot *robot, int homeRow, int homeCol, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS]);
 void drawRobot(const Robot *robot); // takes 2D array of "GridSquare" structure, and a pointer to a "Robot" structure. this func will locate HOME and draw the robot on top of it.
