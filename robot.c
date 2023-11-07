@@ -21,19 +21,44 @@ void drawRobot(const Robot *robot)
     fillOval(x, y, 50, 50);
 }
 
-// void forward(Robot *robot, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS], int x, int y)
-// {
-//     drawRobot(grid, robot);
-//     for (int row = 0; row < ROWS_AND_COLUMNS; row++)
-//     {
-//         for (int col = 0; col < ROWS_AND_COLUMNS; col++)
-//         {
-//             if (grid[row][col].type == EMPTY)
-//             {
-//                 robot->position.x = x + SQUARE_WIDTH;
-//                 setColour(red);
-//                 fillOval(x, y, 50, 50);
-//             }
-//         }
-//     }
-// }
+int canMoveForward(Robot *robot, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
+{
+    if (robot->direction == NORTH)
+    {
+        return robot->gridSquare->row > 0 && (grid[robot->gridSquare->row - 1][robot->gridSquare->col].type == BLOCK);
+    }
+    if (robot->direction == WEST)
+    {
+        return robot->gridSquare->col > 0 && (grid[robot->gridSquare->row][robot->gridSquare->col - 1].type == BLOCK);
+    }
+    if (robot->direction == SOUTH)
+    {
+        return robot->gridSquare->row < 9 && (grid[robot->gridSquare->row + 1][robot->gridSquare->col].type == BLOCK);
+    }
+    if (robot->direction == EAST)
+    {
+        return robot->gridSquare->col < 9 && (grid[robot->gridSquare->row][robot->gridSquare->col + 1].type == BLOCK);
+    }
+}
+
+void forward(Robot *robot, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
+{
+    if (robot->direction == NORTH)
+    {
+        robot->gridSquare = &grid[robot->gridSquare->row - 1][robot->gridSquare->col];
+    }
+    if (robot->direction == SOUTH)
+    {
+        robot->gridSquare = &grid[robot->gridSquare->row + 1][robot->gridSquare->col];
+    }
+    if (robot->direction == EAST)
+    {
+        robot->gridSquare = &grid[robot->gridSquare->row][robot->gridSquare->col + 1];
+    }
+    if (robot->direction == WEST)
+    {
+        robot->gridSquare = &grid[robot->gridSquare->row][robot->gridSquare->col - 1];
+    }
+    robot->position.x = robot->gridSquare->position.x;
+    robot->position.y = robot->gridSquare->position.y;
+}

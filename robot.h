@@ -42,7 +42,7 @@ void atMarker();
 
 // return true if the robot can move forward, there is no wall or
 // block in front of it. Return false otherwise.
-int canMoveForward();
+int canMoveForward(Robot *robot, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS]);
 
 // the ‘home’ square is the initial position of the robot. The function
 // returns true if the robot is on the home square, otherwise false. By definition, there

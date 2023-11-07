@@ -5,11 +5,10 @@
 
 typedef enum
 {
-    WALL, // black
     EMPTY,
     MARKER, // grey
-    BLOCK,
-    HOME // blue
+    BLOCK,  // black
+    HOME    // blue
 } GridType;
 
 typedef struct
