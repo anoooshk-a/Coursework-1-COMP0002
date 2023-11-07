@@ -15,8 +15,8 @@ void initialiseRobot(Robot *robot, int homeRow, int homeCol, GridSquare grid[ROW
 void drawRobot(const Robot *robot)
 {
     foreground();
-    int x = robot->position.x;
-    int y = robot->position.y;
+    int x = robot->gridSquare->position.x;
+    int y = robot->gridSquare->position.y;
     // draws the robot
     setColour(red);
     fillOval(x, y, 50, 50);
@@ -26,19 +26,19 @@ int canMoveForward(Robot *robot, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLU
 {
     if (robot->direction == NORTH)
     {
-        return robot->gridSquare->row > 0 && (grid[robot->gridSquare->row - 1][robot->gridSquare->col].type == BLOCK);
+        return robot->gridSquare->row > 0 && (grid[robot->gridSquare->row - 1][robot->gridSquare->col].type != BLOCK);
     }
-    if (robot->direction == WEST)
+    else if (robot->direction == WEST)
     {
-        return robot->gridSquare->col > 0 && (grid[robot->gridSquare->row][robot->gridSquare->col - 1].type == BLOCK);
+        return robot->gridSquare->col > 0 && (grid[robot->gridSquare->row][robot->gridSquare->col - 1].type != BLOCK);
     }
-    if (robot->direction == SOUTH)
+    else if (robot->direction == SOUTH)
     {
-        return robot->gridSquare->row < 9 && (grid[robot->gridSquare->row + 1][robot->gridSquare->col].type == BLOCK);
+        return robot->gridSquare->row < 9 && (grid[robot->gridSquare->row + 1][robot->gridSquare->col].type != BLOCK);
     }
-    if (robot->direction == EAST)
+    else if (robot->direction == EAST)
     {
-        return robot->gridSquare->col < 9 && (grid[robot->gridSquare->row][robot->gridSquare->col + 1].type == BLOCK);
+        return robot->gridSquare->col < 9 && (grid[robot->gridSquare->row][robot->gridSquare->col + 1].type != BLOCK);
     }
 }
 
@@ -68,38 +68,38 @@ void left(Robot *robot)
 {
     if (robot->direction == NORTH)
     {
-        robot->direction == WEST;
+        robot->direction = WEST;
     }
     else if (robot->direction == SOUTH)
     {
-        robot->direction == EAST;
+        robot->direction = EAST;
     }
     else if (robot->direction == WEST)
     {
-        robot->direction == SOUTH;
+        robot->direction = SOUTH;
     }
     else if (robot->direction == EAST)
     {
-        robot->direction == NORTH;
+        robot->direction = NORTH;
     }
 }
 void right(Robot *robot)
 {
     if (robot->direction == NORTH)
     {
-        robot->direction == EAST;
+        robot->direction = EAST;
     }
     else if (robot->direction == SOUTH)
     {
-        robot->direction == WEST;
+        robot->direction = WEST;
     }
     else if (robot->direction == WEST)
     {
-        robot->direction == NORTH;
+        robot->direction = NORTH;
     }
     else if (robot->direction == EAST)
     {
-        robot->direction == SOUTH;
+        robot->direction = SOUTH;
     }
 }
 

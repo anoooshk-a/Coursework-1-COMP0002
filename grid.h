@@ -26,7 +26,7 @@ typedef struct
 
 #define ROWS_AND_COLUMNS 10
 #define HOME_ROW 0
-#define HOME_COL 3
+#define HOME_COL 0
 
 void createGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS]);
 void drawGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS]);

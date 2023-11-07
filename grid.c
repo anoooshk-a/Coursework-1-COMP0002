@@ -16,12 +16,12 @@ void createGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
             grid[row][col].position.y = grid_start_y + (row * SQUARE_HEIGHT);
         }
     }
-    grid[0][0].type = BLOCK;
-    grid[3][6].type = BLOCK;
-    grid[6][6].type = BLOCK;
-    grid[5][8].type = BLOCK;
-    grid[0][3].type = HOME;
-    grid[6][0].type = MARKER;
+    // grid[0][0].type = BLOCK;
+    // grid[3][6].type = BLOCK;
+    // grid[6][6].type = BLOCK;
+    // grid[5][8].type = BLOCK;
+    grid[0][0].type = HOME;
+    grid[8][9].type = MARKER;
 }
 
 void drawGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
