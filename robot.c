@@ -62,3 +62,42 @@ void forward(Robot *robot, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
     robot->position.x = robot->gridSquare->position.x;
     robot->position.y = robot->gridSquare->position.y;
 }
+
+void left(Robot *robot)
+{
+    if (robot->direction == NORTH)
+    {
+        robot->direction == WEST;
+    }
+    else if (robot->direction == SOUTH)
+    {
+        robot->direction == EAST;
+    }
+    else if (robot->direction == WEST)
+    {
+        robot->direction == SOUTH;
+    }
+    else if (robot->direction == EAST)
+    {
+        robot->direction == NORTH;
+    }
+}
+void right(Robot *robot)
+{
+    if (robot->direction == NORTH)
+    {
+        robot->direction == EAST;
+    }
+    else if (robot->direction == SOUTH)
+    {
+        robot->direction == WEST;
+    }
+    else if (robot->direction == WEST)
+    {
+        robot->direction == NORTH;
+    }
+    else if (robot->direction == EAST)
+    {
+        robot->direction == SOUTH;
+    }
+}
