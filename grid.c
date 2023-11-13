@@ -1,6 +1,5 @@
 #include "grid.h"
 #include "graphics.h"
-#include <stdio.h>
 
 void createGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
 {
@@ -22,9 +21,12 @@ void createGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
     // grid[6][6].type = BLOCK;
     // grid[5][8].type = BLOCK;
     grid[0][0].type = HOME;
-    grid[8][9].type = MARKER;
+    grid[7][8].type = MARKER; // 8, 9
     grid[9][8].type = MARKER;
     grid[0][5].type = MARKER;
+    grid[6][0].type = BLOCK;
+    grid[5][5].type = BLOCK;
+    grid[8][8].type = BLOCK;
 }
 
 void drawGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])

@@ -28,7 +28,7 @@ int main()
                 clear();
                 forward(&robot, grid);
                 drawRobot(&robot);
-                sleep(250);
+                sleep(100);
                 push(&robot, grid);
             }
             right(&robot);
@@ -45,7 +45,6 @@ int main()
         {
             Node lastMove = pop();
             Direction opposite = reverseDirection(lastMove.direction);
-            printf("direction: %d, oppposite direction: %d\n", lastMove.direction, opposite);
 
             while (robot.direction != opposite)
             {
@@ -59,7 +58,6 @@ int main()
             clear();
             drawRobot(&robot);
             sleep(100);
-            printf("keep going forward");
         }
 
         dropMarker(&robot);
