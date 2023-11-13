@@ -62,6 +62,9 @@ void dropMarker(Robot *robot);
 // returns true if the robot is carrying a marker, otherwise false.
 int isCarryingAMarker(Robot *robot);
 
+// changes the direction of the Robot once it reaches its marker
+Direction reverseDirection(Direction direction);
+
 void initialiseRobot(Robot *robot, int homeRow, int homeCol, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS]);
 void drawRobot(const Robot *robot); // takes 2D array of "GridSquare" structure, and a pointer to a "Robot" structure. this func will locate HOME and draw the robot on top of it.
 void initDirection(Robot *robot, Direction direction);

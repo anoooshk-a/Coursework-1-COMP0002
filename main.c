@@ -1,6 +1,8 @@
 #include "graphics.h"
 #include "grid.h"
 #include "robot.h"
+#include "linked_list.h"
+#include <stdlib.h>
 #include <stdio.h>
 
 int main()
@@ -10,20 +12,56 @@ int main()
     createGrid(grid);
     Robot robot;
     initialiseRobot(&robot, HOME_ROW, HOME_COL, grid);
+    Node *top = NULL;
 
     background();
     drawGrid(grid);
 
-    foreground();
-    while (!atMarker(&robot))
+    while (countMarker(grid) > 0)
     {
-        while (!atMarker(&robot) && canMoveForward(&robot, grid))
+        // finding the marker
+        foreground();
+        while (!atMarker(&robot))
         {
-            clear();
-            forward(&robot, grid);
-            drawRobot(&robot);
-            sleep(250);
+            while (!atMarker(&robot) && canMoveForward(&robot, grid))
+            {
+                clear();
+                forward(&robot, grid);
+                drawRobot(&robot);
+                sleep(250);
+                push(&robot, grid);
+            }
+            right(&robot);
         }
-        right(&robot);
+        // marker has been found
+        pickUpMarker(&robot);
+        background();
+        clear();
+        drawGrid(grid);
+
+        // time to go home!
+        foreground();
+        while (!atHome(&robot))
+        {
+            Node lastMove = pop();
+            Direction opposite = reverseDirection(lastMove.direction);
+            printf("direction: %d, oppposite direction: %d\n", lastMove.direction, opposite);
+
+            while (robot.direction != opposite)
+            {
+                clear();
+                right(&robot);
+                drawRobot(&robot);
+                sleep(100);
+            }
+
+            forward(&robot, grid);
+            clear();
+            drawRobot(&robot);
+            sleep(100);
+            printf("keep going forward");
+        }
+
+        dropMarker(&robot);
     }
 }

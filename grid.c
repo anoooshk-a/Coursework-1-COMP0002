@@ -1,5 +1,6 @@
 #include "grid.h"
 #include "graphics.h"
+#include <stdio.h>
 
 void createGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
 {
@@ -22,6 +23,8 @@ void createGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
     // grid[5][8].type = BLOCK;
     grid[0][0].type = HOME;
     grid[8][9].type = MARKER;
+    grid[9][8].type = MARKER;
+    grid[0][5].type = MARKER;
 }
 
 void drawGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
@@ -57,4 +60,20 @@ void drawGridSquare(GridSquare *grid)
     // draws the outline of the squares
     setColour(black);
     drawRect(grid->position.x, grid->position.y, SQUARE_WIDTH, SQUARE_HEIGHT);
+}
+
+int countMarker(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
+{
+    int counter = 0;
+    for (int row = 0; row < ROWS_AND_COLUMNS; row++)
+    {
+        for (int col = 0; col < ROWS_AND_COLUMNS; col++)
+        {
+            if (grid[row][col].type == MARKER)
+            {
+                counter++;
+            }
+        }
+    }
+    return counter;
 }

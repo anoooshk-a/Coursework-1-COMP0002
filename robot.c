@@ -1,6 +1,7 @@
 #include "grid.h"
 #include "graphics.h"
 #include "robot.h"
+#include "linked_list.h"
 
 void initialiseRobot(Robot *robot, int homeRow, int homeCol, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
 {
@@ -44,6 +45,10 @@ int canMoveForward(Robot *robot, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLU
 
 void forward(Robot *robot, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
 {
+    if (isCarryingAMarker(robot) && atHome(robot))
+    {
+        dropMarker(robot);
+    }
     if (robot->direction == NORTH)
     {
         robot->gridSquare = &grid[robot->gridSquare->row - 1][robot->gridSquare->col];
@@ -133,5 +138,25 @@ void dropMarker(Robot *robot)
     if (atHome(robot))
     {
         robot->carryingMarker = 0;
+    }
+}
+
+Direction reverseDirection(Direction direction)
+{
+    if (direction == NORTH)
+    {
+        return SOUTH;
+    }
+    else if (direction == SOUTH)
+    {
+        return NORTH;
+    }
+    else if (direction == EAST)
+    {
+        return WEST;
+    }
+    else if (direction == WEST)
+    {
+        return EAST;
     }
 }
