@@ -2,8 +2,8 @@
 #include "util.h"
 #include "robot.h"
 #include "linked_list.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 Node *top = NULL;
 
@@ -25,7 +25,6 @@ void push(Robot *robot, GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
     Node *newNode = malloc(sizeof(Node));
     if (newNode == NULL)
     {
-        // exits the code due to stack overflow
         printf("Stack overflow");
         exit(1);
     }

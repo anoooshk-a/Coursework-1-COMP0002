@@ -18,7 +18,7 @@ void drawRobot(const Robot *robot)
     foreground();
     int x = robot->gridSquare->position.x;
     int y = robot->gridSquare->position.y;
-    // draws the robot
+    // sets colour and shape of robot
     setColour(red);
     fillOval(x, y, 50, 50);
 }

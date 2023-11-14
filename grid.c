@@ -9,19 +9,15 @@ void createGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
     {
         for (int col = 0; col < ROWS_AND_COLUMNS; col++)
         {
-            grid[row][col].row = row; //.row = dot notation that refers the struct GridSquare value to its row field, the right part of the equal sign refers to the for loop's row aka row++
+            grid[row][col].row = row;
             grid[row][col].col = col;
-            grid[row][col].type = EMPTY;
+            grid[row][col].type = EMPTY; // initialises all gridsquares to empty
             grid[row][col].position.x = grid_start_x + (col * SQUARE_WIDTH);
             grid[row][col].position.y = grid_start_y + (row * SQUARE_HEIGHT);
         }
     }
-    // grid[0][0].type = BLOCK;
-    // grid[3][6].type = BLOCK;
-    // grid[6][6].type = BLOCK;
-    // grid[5][8].type = BLOCK;
     grid[0][0].type = HOME;
-    grid[7][8].type = MARKER; // 8, 9
+    grid[7][8].type = MARKER;
     grid[9][8].type = MARKER;
     grid[0][5].type = MARKER;
     grid[6][0].type = BLOCK;
@@ -42,7 +38,7 @@ void drawGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS])
 
 void drawGridSquare(GridSquare *grid)
 {
-    if (grid->type == BLOCK) // (*grid).type
+    if (grid->type == BLOCK)
     {
         setColour(black);
     }

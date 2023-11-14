@@ -14,7 +14,7 @@ typedef enum
 typedef struct
 {
     Coordinates position;
-    GridType type; // has an enum name of GridType and a variable name of type
+    GridType type;
     int row, col;
 } GridSquare;
 
@@ -28,11 +28,9 @@ typedef struct
 #define HOME_ROW 0
 #define HOME_COL 0
 
-// func that counts the number of markers in the grid and as a parameter take in the grid
-int countMarker(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS]);
-
 void createGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS]);
 void drawGrid(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS]);
 void drawGridSquare(GridSquare *grid);
 
+int countMarker(GridSquare grid[ROWS_AND_COLUMNS][ROWS_AND_COLUMNS]);
 #endif
